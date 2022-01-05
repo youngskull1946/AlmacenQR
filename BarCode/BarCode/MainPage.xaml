@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BarCode"
+             mc:Ignorable="d"
+             x:Class="BarCode.MainPage">
+    
+    
+    
+    <StackLayout Spacing="10">
+        <Button Text="Escanear Elemento" x:Name="BtnScan" Clicked="BtnScan_Clicked" />
+        <Entry x:Name="TxtBarcode" Placeholder="Último elemento escaneado"></Entry>
+
+
+
+    <ListView x:Name="LvElementos" ItemsSource="{Binding}">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+                    <TextCell Text="{Binding Code}"></TextCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+    </ListView>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+       
+        <Button Text="Enviar" x:Name="BtnEnviar" Grid.Column="1" Grid.Row="0" BackgroundColor="#1EF078"/>
+        <Button Text="Borrar" x:Name="BtnBorrar" Clicked="BtnBorrar_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="#F35F5F"/>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
