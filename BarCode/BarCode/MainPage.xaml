@@ -35,7 +35,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
        
-        <Button Text="Enviar" x:Name="BtnEnviar" Grid.Column="1" Grid.Row="0" BackgroundColor="#1EF078"/>
+        <Button Text="Enviar" x:Name="BtnEnviar" Clicked="BtnEnviar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#1EF078"/>
         <Button Text="Borrar" x:Name="BtnBorrar" Clicked="BtnBorrar_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="#F35F5F"/>
         </Grid>
     </StackLayout>

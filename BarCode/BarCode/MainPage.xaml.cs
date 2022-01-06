@@ -38,10 +38,16 @@ namespace BarCode
             } catch (Exception ex) { throw; }
         }
 
-        private async void BtnBorrar_Clicked(object sender, EventArgs e)
+        void BtnEnviar_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage.DisplayAlert("", "Objetos Retirados del Inventario", "Ok");
+        }
+
+        void BtnBorrar_Clicked(object sender, EventArgs e)
         {
             people.Clear();
         }
+
 
 
     }
