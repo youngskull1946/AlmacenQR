@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+    
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -6,10 +7,25 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.V_Principal">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="WhiteSmoke">
             <Label Text="¡Bienvenido!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" FontSize="Title" />
+                HorizontalOptions="CenterAndExpand" FontSize="Title" Scale="2" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250" />
+                    <RowDefinition Height="250" />
+                </Grid.RowDefinitions>
+
+                <Button Text="Agregar" x:Name="BtnAgregar" Clicked="BtnAgregar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#A8B9A9"/>
+                <Button Text="Tomar" x:Name="BtnBorrar"  Grid.Column="0" Grid.Row="0" BackgroundColor="#A8B9A9"/>
+                <Button Text="Agregar" x:Name="BtnEs"  Grid.Column="1" Grid.Row="1" BackgroundColor="#A8B9A9"/>
+                <Button Text="aosji" x:Name="BtnEd"  Grid.Column="0" Grid.Row="1" BackgroundColor="#A8B9A9"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

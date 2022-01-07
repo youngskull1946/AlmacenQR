@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace BarCode
+    namespace BarCode
 {
     
     [DesignTimeVisible(false)]
@@ -20,6 +20,7 @@ namespace BarCode
         {
             BindingContext = people;
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         
