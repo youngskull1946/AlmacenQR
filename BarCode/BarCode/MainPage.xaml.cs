@@ -36,7 +36,7 @@ using Xamarin.Forms;
                     TxtBarcode.Text = result;
                     people.Add(new Codigo(result));
                 }
-            } catch (Exception ex) { throw; }
+            } catch (Exception) { throw; }
         }
 
         void BtnEnviar_Clicked(object sender, EventArgs e)

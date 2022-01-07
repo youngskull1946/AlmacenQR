@@ -4,14 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BarCode.Vistas.V_Consulta">
+             x:Class="BarCode.Vistas.DetalleFinal">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Ingrese el Número de Serie:" 
+            <Label Text="Datos de la Refacción"
                 HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="TxtidR" Placeholder="ID o Número de Serie"/>
-            <Button x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Text="Buscar" />
-            <Button x:Name="BtnRegistrar" Clicked="BtnRegistrar_Clicked" Text="Registrar" />
+            <Label x:Name="LblMensaje" HorizontalOptions="Center" />
+            <Entry x:Name="TxtMaquina" Placeholder="Maquina" />
+            <Entry x:Name="TxtNombre" Placeholder="Nombre" />
+            <Entry x:Name="TxtCantidad" Placeholder="Cantidad" />
+            <Button x:Name="BtnActualizar" Text="Actualizar" />       
+            <Button x:Name="BtnBorrar" Text="Borrar" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

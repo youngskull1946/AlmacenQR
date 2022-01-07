@@ -20,7 +20,18 @@ namespace BarCode.Vistas
 
         async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new V_Registro());
+        }
+
+        async void BtnBuscar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new V_Consulta());
+        }
+
+        async void BtnTomar_Clicked(object sender, EventArgs e)
+        {
             await Navigation.PushAsync(new MainPage());
         }
+
     }
 }

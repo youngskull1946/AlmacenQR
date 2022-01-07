@@ -14,6 +14,6 @@ namespace BarCode.Tablas
         [MaxLength(255)]
         public string Nombre { get; set; }
 
-        public double Cantidad { get; set; }
+        public string Cantidad { get; set; }
     }
 }

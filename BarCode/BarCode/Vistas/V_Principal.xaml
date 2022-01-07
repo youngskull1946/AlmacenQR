@@ -22,9 +22,9 @@
                 </Grid.RowDefinitions>
 
                 <Button Text="Agregar" x:Name="BtnAgregar" Clicked="BtnAgregar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#A8B9A9"/>
-                <Button Text="Tomar" x:Name="BtnBorrar"  Grid.Column="0" Grid.Row="0" BackgroundColor="#A8B9A9"/>
-                <Button Text="Agregar" x:Name="BtnEs"  Grid.Column="1" Grid.Row="1" BackgroundColor="#A8B9A9"/>
-                <Button Text="aosji" x:Name="BtnEd"  Grid.Column="0" Grid.Row="1" BackgroundColor="#A8B9A9"/>
+                <Button Text="Tomar" x:Name="BtnTomar" Clicked="BtnTomar_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="#A8B9A9"/>
+                <Button Text="Buscar" x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Grid.Column="1" Grid.Row="1" BackgroundColor="#A8B9A9"/>
+                <Button Text="Inventario" x:Name="BtnEd"  Grid.Column="0" Grid.Row="1" BackgroundColor="#A8B9A9"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

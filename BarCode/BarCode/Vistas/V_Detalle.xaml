@@ -6,10 +6,17 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.V_Detalle">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="LightBlue" Margin="5">
+            <Label Text="Lista de Herramientas"
+                BackgroundColor="WhiteSmoke"
+                HorizontalOptions="Center" />
+            <ListView x:Name="ListaRefacciones">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Id}" Detail="{Binding Nombre}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

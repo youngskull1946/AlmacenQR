@@ -7,9 +7,16 @@
              x:Class="BarCode.Vistas.V_Registro">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
+            <Label Text="Registro de inventario de Refacciones"
                 HorizontalOptions="CenterAndExpand" />
+
+            <Entry x:Name="TxtID" Placeholder="ID o Referencia" />
+            <Entry x:Name="TxtMaquina" Placeholder="Máquina a la que pertenece" />
+            <Entry x:Name="TxtNombre" Placeholder="Nombre / descripción" />
+            <Entry x:Name="TxtCantidad" Placeholder="Cantidad" Keyboard="Numeric"  />
+            
+            
+        <Button x:Name="BtnRegistrar" Text="Registrar" Clicked="BtnRegistrar_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
