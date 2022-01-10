@@ -13,7 +13,10 @@ namespace BarCode.Tablas
         public string Maquina { get; set; }
         [MaxLength(255)]
         public string Nombre { get; set; }
-
-        public string Cantidad { get; set; }
+        [MaxLength(255)]
+        public int Cantidad { get; set; }
+        [Unique]
+        public string Barras { get; set; }
+        
     }
 }

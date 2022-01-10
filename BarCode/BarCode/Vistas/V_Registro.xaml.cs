@@ -24,18 +24,64 @@ namespace BarCode.Vistas
             BtnRegistrar.Clicked += BtnRegistrar_Clicked; 
         }
 
-        private void BtnRegistrar_Clicked(object sender, EventArgs e)
+        private async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
-            var DatosRefaccion = new T_Refacciones
-            {
-                Maquina = TxtMaquina.Text,
-                Nombre = TxtNombre.Text,
-                Cantidad = TxtCantidad.Text    
-            };
-            conexion.InsertAsync(DatosRefaccion);
-            limpiarFormulario();
-            DisplayAlert("Alerta", "¡Refacción ingresada satisfactoriamente!", "OK");
+            
+                if (validarDatos())
+                {
+                    T_Refacciones refac = new T_Refacciones
+                    {
+                        Barras = TxtID.Text,
+                        Maquina = TxtMaquina.Text,
+                        Nombre = TxtNombre.Text,
+                        Cantidad = int.Parse(TxtCantidad.Text)
+                    };
+                try { 
+                    await conexion.InsertAsync(refac);
+                    limpiarFormulario();
+                    await DisplayAlert("Alerta", "¡Refacción ingresada satisfactoriamente!", "OK");
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+                else
+                {
+                    await DisplayAlert("Advertencia", "Ingresar todos los datos", "OK");
+                }
+            
 
+            
+
+            
+
+        }
+
+        public bool validarDatos()
+        {
+            bool respuesta;
+            if (string.IsNullOrEmpty(TxtID.Text))
+            {
+                respuesta = false;
+            }
+            else if (string.IsNullOrEmpty(TxtMaquina.Text))
+            {
+                respuesta = false;
+            }
+            else if (string.IsNullOrEmpty(TxtNombre.Text))
+            {
+                respuesta = false;
+            }
+            else if (string.IsNullOrEmpty(TxtID.Text))
+            {
+                respuesta = false;
+            }
+            else
+            {
+                respuesta = true;
+            }
+            return respuesta;
         }
 
         private void limpiarFormulario()

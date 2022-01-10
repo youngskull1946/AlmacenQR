@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using BarCode.Datos;
 namespace BarCode
 {
     public partial class App : Application
@@ -15,10 +15,12 @@ namespace BarCode
             
         }
 
+    
         protected override void OnStart()
         {
             // Handle when your app starts
         }
+
 
         protected override void OnSleep()
         {

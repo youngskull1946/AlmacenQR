@@ -33,11 +33,12 @@ namespace BarCode.Vistas
             var maquina = Obj.Maquina;
             var nom = Obj.Nombre;
             var cantidad = Obj.Cantidad;
-            var cantidad2 = Convert.ToDouble(cantidad);
+            var cantidad2 = Convert.ToInt32(cantidad);
             var ID = Convert.ToInt32(item);
+            var barras = Obj.Barras;
             try 
             {
-                Navigation.PushAsync(new DetalleFinal(ID,maquina,nom,cantidad2));
+                Navigation.PushAsync(new DetalleFinal(ID,maquina,nom,cantidad2,barras));
             }
             catch (Exception) { throw; }
         }

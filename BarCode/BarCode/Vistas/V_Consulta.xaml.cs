@@ -56,9 +56,9 @@ namespace BarCode.Vistas
 
         }
 
-        private IEnumerable<T_Refacciones> SELECT_WHERE(SQLiteConnection db, string id)
+        private IEnumerable<T_Refacciones> SELECT_WHERE(SQLiteConnection db, string barras)
         {
-            return db.Query<T_Refacciones>("SELECT * FROM T_Refacciones WHERE Id=?",id);
+            return db.Query<T_Refacciones>("SELECT Id,Nombre FROM T_Refacciones WHERE Barras=?",barras);
         }
     }
 }

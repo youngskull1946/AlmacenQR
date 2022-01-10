@@ -10,11 +10,13 @@
             <Label Text="Datos de la Refacción"
                 HorizontalOptions="CenterAndExpand" />
             <Label x:Name="LblMensaje" HorizontalOptions="Center" />
+            <Entry x:Name="TxtBarras" Placeholder="Barras" />
             <Entry x:Name="TxtMaquina" Placeholder="Maquina" />
             <Entry x:Name="TxtNombre" Placeholder="Nombre" />
             <Entry x:Name="TxtCantidad" Placeholder="Cantidad" />
             <Button x:Name="BtnActualizar" Text="Actualizar" />       
             <Button x:Name="BtnBorrar" Text="Borrar" />
+            <Button x:Name="BtnBorrarTodo" Text="Borrar Todo" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -41,7 +41,26 @@ using Xamarin.Forms;
 
         void BtnEnviar_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.DisplayAlert("", "Objetos Retirados del Inventario", "Ok");
+            int vecesrepetidas = 2;
+            string texto_generado="";
+            if (people.Count > 1)
+            {
+                for (int i = 0; i <= people.Count; i++)
+                {
+                    //texto_generado += people[i].ToString();
+                    if(i+1 <= people.Count  &&  people[i+1].ToString() == (people[i].ToString()))
+                    {
+                        
+                           vecesrepetidas++;
+                        
+                    }
+                    i++;
+                }
+            }
+
+            int cuenta = people.Count();
+            Application.Current.MainPage.DisplayAlert("", vecesrepetidas.ToString(), "ok");
+                //Application.Current.MainPage.DisplayAlert("Alerta",vecesrepetidas +  " Objetos Retirados del Inventario", "Ok");
         }
 
         void BtnBorrar_Clicked(object sender, EventArgs e)

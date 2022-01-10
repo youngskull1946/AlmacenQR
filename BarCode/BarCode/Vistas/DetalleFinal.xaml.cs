@@ -16,13 +16,13 @@ namespace BarCode.Vistas
     public partial class DetalleFinal : ContentPage
     {
         public int idseleccionado;
-        public string maqseleccionada, nombreseleccionado;
+        public string maqseleccionada, nombreseleccionado,barrasseleccionado;
         public double cantseleccionada;
         private SQLiteAsyncConnection conexion;
         IEnumerable<T_Refacciones> ResultadoDelete;
         IEnumerable<T_Refacciones> ResultadoUpdate;
 
-        public DetalleFinal(int id, string maquina, string nombre, double cantidad)
+        public DetalleFinal(int id, string maquina, string nombre, int cantidad,string barras)
         {
             InitializeComponent();
             conexion = DependencyService.Get<ISQLiteDB>().GetConnection();
@@ -30,17 +30,20 @@ namespace BarCode.Vistas
             maqseleccionada = maquina;
             nombreseleccionado = nombre;
             cantseleccionada = cantidad;
+            barrasseleccionado = barras; 
             BtnActualizar.Clicked += BtnActualizar_Clicked;
             BtnBorrar.Clicked += BtnBorrar_Clicked;
+            BtnBorrarTodo.Clicked += BtnBorrarTodo_Clicked;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LblMensaje.Text = " ID " + idseleccionado;
+            LblMensaje.Text = " Código de Barras: " + barrasseleccionado;
             TxtMaquina.Text = maqseleccionada;
             TxtNombre.Text = nombreseleccionado;
             TxtCantidad.Text = cantseleccionada.ToString();
+            TxtBarras.Text = barrasseleccionado;
         }
 
         private void BtnBorrar_Clicked(object sender, EventArgs e)
@@ -57,6 +60,29 @@ namespace BarCode.Vistas
             TxtNombre.Text = "";
             TxtCantidad.Text = "";
             TxtMaquina.Text = "";
+            TxtBarras.Text = "";
+        }
+
+        
+        private void BtnBorrarTodo_Clicked(object sender, EventArgs e)
+        {
+            var rutaDB = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Almacen.db3");
+            var db = new SQLiteConnection(rutaDB);
+            ResultadoDelete = DeleteAll(db);
+            DisplayAlert("", "Todas las refacciones han sido borradas satisfactoriamente", "ok");
+            Limpiar();
+        }
+        private void BtnActualizar_Clicked(object sender, EventArgs e)
+        {
+            var rutaDB = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Almacen.db3");
+            var db = new SQLiteConnection(rutaDB);
+            ResultadoUpdate = Update(db, TxtMaquina.Text, TxtNombre.Text , TxtCantidad.Text, TxtBarras.Text, idseleccionado);
+            DisplayAlert("", "La refacción ha sido actualizada satisfactoriamente", "ok");
+        }
+
+        private IEnumerable<T_Refacciones> Update(SQLiteConnection db, string maquina, string nombre, string cantidad, string barras,int id)
+        {
+            return db.Query<T_Refacciones>("UPDATE T_Refacciones SET Maquina = ? , Nombre = ? , Cantidad = ? , Barras = ? WHERE Id = ? ", maquina,nombre,cantidad,barras,id);
         }
 
         private IEnumerable<T_Refacciones> Delete(SQLiteConnection db, int id)
@@ -64,17 +90,11 @@ namespace BarCode.Vistas
             return db.Query<T_Refacciones>("DELETE FROM T_Refacciones WHERE Id=?", id);
         }
 
-        private void BtnActualizar_Clicked(object sender, EventArgs e)
+
+        private IEnumerable<T_Refacciones> DeleteAll(SQLiteConnection db)
         {
-            var rutaDB = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Almacen.db3");
-            var db = new SQLiteConnection(rutaDB);
-            ResultadoUpdate = Update(db, TxtMaquina.Text, TxtNombre.Text , TxtCantidad.Text, idseleccionado);
-            DisplayAlert("", "La refacción ha sido actualizada satisfactoriamente", "ok");
+            return db.Query<T_Refacciones>("DELETE FROM T_Refacciones");
         }
 
-        private IEnumerable<T_Refacciones> Update(SQLiteConnection db, string maquina, string nombre, string cantidad,int id)
-        {
-            return db.Query<T_Refacciones>("UPDATE T_Refacciones SET Maquina = ? , Nombre = ? , Cantidad = ? WHERE Id = ? ", maquina,nombre,cantidad,id);
-        }
     }
 }
