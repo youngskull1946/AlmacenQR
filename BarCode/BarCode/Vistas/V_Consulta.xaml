@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BarCode.Vistas.V_Consulta">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Ingrese el Número de Serie:" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="TxtidR" Placeholder="ID o Número de Serie"/>
+            <Button x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Text="Buscar" />
+            <Button x:Name="BtnRegistrar" Clicked="BtnRegistrar_Clicked" Text="Registrar" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
