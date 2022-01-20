@@ -21,7 +21,8 @@ namespace BarCode.Vistas
         {
             InitializeComponent();
             conexion = DependencyService.Get<ISQLiteDB>().GetConnection();
-            BtnRegistrar.Clicked += BtnRegistrar_Clicked; 
+            NavigationPage.SetHasNavigationBar(this, false);
+
         }
 
         private async void BtnRegistrar_Clicked(object sender, EventArgs e)

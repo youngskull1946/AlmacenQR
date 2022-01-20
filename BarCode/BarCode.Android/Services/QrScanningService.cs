@@ -19,18 +19,24 @@ namespace BarCode.Droid.Services
 {
     class QrScanningService : ScanningService
     {
+        
+
         public async Task<string> ScanAsync()
         {
             var optionDefault = new MobileBarcodeScanningOptions();
             var optionsCustom = new MobileBarcodeScanningOptions();
-
+            
             var scanner = new MobileBarcodeScanner()
-            {
+            {   
                 TopText = "Acerca la cámara",
-                BottomText = "Toca la pantalla para enfocar",
+                BottomText = "Toca la pantalla para enfocar",    
+               
             };
             var scanResult = await scanner.Scan(optionsCustom);
+            
             return scanResult.Text;
         }
+
     }
+
 }

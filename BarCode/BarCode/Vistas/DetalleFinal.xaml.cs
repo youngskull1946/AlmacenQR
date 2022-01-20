@@ -25,6 +25,7 @@ namespace BarCode.Vistas
         public DetalleFinal(int id, string maquina, string nombre, int cantidad,string barras)
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             conexion = DependencyService.Get<ISQLiteDB>().GetConnection();
             idseleccionado = id;
             maqseleccionada = maquina;

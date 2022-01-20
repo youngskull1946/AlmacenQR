@@ -13,18 +13,34 @@
     
     <StackLayout Spacing="10">
         <Button Text="Escanear Elemento" x:Name="BtnScan" Clicked="BtnScan_Clicked" Margin="0,10,0,0" />
-        <Entry x:Name="TxtBarcode" Placeholder="Último elemento escaneado"></Entry>
+        <Grid IsVisible="True" InputTransparent="False" BackgroundColor="#F8F3F3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            
+            <Label Text="Cantidad"  Grid.Column="1" Grid.Row="0"/>
+            <Label Text="ID o Código"  Grid.Column="0" Grid.Row="0"/>
+
+        </Grid>
 
 
+        <ListView x:Name="LvElementos" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Code}"/>
+                            <Entry Grid.Column="1" Text="{Binding Quantity}" Keyboard="Numeric"/>
 
-    <ListView x:Name="LvElementos" ItemsSource="{Binding}">
-    <ListView.ItemTemplate>
-        <DataTemplate>
-                    <TextCell Text="{Binding Code}"></TextCell>
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    </ListView>
-
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Grid Padding="0,10,0,20" IsVisible="True" InputTransparent="False" BackgroundColor="#F8F3F3">
             <Grid.ColumnDefinitions>

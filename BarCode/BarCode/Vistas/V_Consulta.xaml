@@ -6,10 +6,18 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.V_Consulta">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10,20,10,10">
             <Label Text="Ingrese el Número de Serie:" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="TxtidR" Placeholder="ID o Número de Serie"/>
+                HorizontalOptions="CenterAndExpand" FontSize="Title" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="TxtidR" Placeholder="ID o Número de Serie" Grid.Column="0"/>
+                <Button x:Name="BtnEscaner" Clicked="BtnEscaner_Clicked" Grid.Column="1" Text="Escáner" />
+            </Grid>
+            
             <Button x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Text="Buscar" />
             <Button x:Name="BtnRegistrar" Clicked="BtnRegistrar_Clicked" Text="Registrar" />
         </StackLayout>

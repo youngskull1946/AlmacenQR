@@ -6,17 +6,16 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.V_Registro">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10,20,10,10">
             <Label Text="Registro de inventario de Refacciones"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" FontSize="Title" />
 
             <Entry x:Name="TxtID" Placeholder="ID o Referencia" />
             <Entry x:Name="TxtMaquina" Placeholder="Máquina a la que pertenece" />
             <Entry x:Name="TxtNombre" Placeholder="Nombre / descripción" />
             <Entry x:Name="TxtCantidad" Placeholder="Cantidad" Keyboard="Numeric"  />
-            
-            
-        <Button x:Name="BtnRegistrar" Text="Registrar" Clicked="BtnRegistrar_Clicked" />
+
+            <Button x:Name="BtnRegistrar" Text="Registrar" Clicked="BtnRegistrar_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

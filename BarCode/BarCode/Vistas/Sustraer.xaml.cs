@@ -1,28 +1,27 @@
-﻿using BarCode.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using BarCode.Services;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using SQLite;
 using BarCode.Tablas;
 using System.IO;
 using BarCode.Datos;
-using ZXing.Net.Mobile.Forms;
 
-namespace BarCode
+
+
+namespace BarCode.Vistas
 {
-    
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     [DesignTimeVisible(false)]
-    public partial class MainPage : ContentPage
+    public partial class Sustraer : ContentPage
     {
-        IList<Codigo> people = new ObservableCollection<Codigo>();
-        private SQLiteAsyncConnection _conn;
-        IEnumerable<T_Refacciones> ResultadoUpdate;
-
-        public MainPage()
+        public Sustraer()
         {
             BindingContext = people;
             _conn = DependencyService.Get<ISQLiteDB>().GetConnection();
@@ -30,13 +29,15 @@ namespace BarCode
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        
+        IList<OCode> people = new ObservableCollection<OCode>();
+        private SQLiteAsyncConnection _conn;
+        IEnumerable<T_Refacciones> ResultadoUpdate;
 
 
         private async void BtnScan_Clicked(object sender, EventArgs e)
-        {       
+        {
+            
                 var scanner = DependencyService.Get<ScanningService>();
-                
                 var result = await scanner.ScanAsync();
                 if (result != null)
                 {
@@ -48,15 +49,17 @@ namespace BarCode
                         IEnumerable<T_Refacciones> resultado = SELECT_WHERE(db, result);
                         if (resultado.Count() > 0)
                         {
-                            var print = "";
-                            await DisplayAlert("Alerta", "Existe Refacción", "OK");  
+                            string nombre = "", machin="";
+                            await DisplayAlert("Alerta", "Existe Refacción", "OK");
                             var stocksStartingWithA = db.Query<T_Refacciones>("SELECT * FROM T_Refacciones WHERE Barras = ?", result);
                             foreach (var s in stocksStartingWithA)
                             {
-                                print = s.Cantidad.ToString();
+                                nombre = s.Nombre;
+                                machin = s.Maquina;
                             }
-                            people.Add(new Codigo(result,print));
-                            
+
+                            people.Add(new OCode(result, nombre,machin));
+
                         }
                         else
                         {
@@ -69,22 +72,22 @@ namespace BarCode
                     }
 
                 }
-          
+                
+            
         }
 
         void BtnEnviar_Clicked(object sender, EventArgs e)
         {
-            foreach(var s in people)
+            foreach (var s in people)
             {
                 var code = s.Code;
-                var quant = Convert.ToInt32(s.Quantity);
                 var rutaDB = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Almacen.db3");
                 var db = new SQLiteConnection(rutaDB);
-                ResultadoUpdate = Update(db, code, quant);
+                ResultadoUpdate = Update(db, code);
             }
             people.Clear();
             Application.Current.MainPage.DisplayAlert("", " Objetos Actualizados del Inventario", "ok");
-                
+
         }
 
         void BtnBorrar_Clicked(object sender, EventArgs e)
@@ -98,10 +101,9 @@ namespace BarCode
             return db.Query<T_Refacciones>("SELECT * FROM T_Refacciones WHERE Barras=?", barras);
         }
 
-        private IEnumerable<T_Refacciones> Update(SQLiteConnection db, string barras, int cantidad)
+        private IEnumerable<T_Refacciones> Update(SQLiteConnection db, string barras)
         {
-            return db.Query<T_Refacciones>("UPDATE T_Refacciones SET Cantidad = ? WHERE Barras = ? ", cantidad,barras);
+            return db.Query<T_Refacciones>("UPDATE T_Refacciones SET Cantidad = Cantidad - 1 WHERE Barras = ? ", barras);
         }
-
     }
 }

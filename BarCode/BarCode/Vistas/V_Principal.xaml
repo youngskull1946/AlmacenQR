@@ -19,12 +19,16 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="250" />
                     <RowDefinition Height="250" />
+                    <RowDefinition Height="200" />
                 </Grid.RowDefinitions>
 
-                <Button Text="Agregar" x:Name="BtnAgregar" Clicked="BtnAgregar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="#A8B9A9"/>
-                <Button Text="Tomar" x:Name="BtnTomar" Clicked="BtnTomar_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="#A8B9A9"/>
-                <Button Text="Buscar" x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Grid.Column="1" Grid.Row="1" BackgroundColor="#A8B9A9"/>
-                <Button Text="Inventario" x:Name="BtnEd"  Grid.Column="0" Grid.Row="1" BackgroundColor="#A8B9A9"/>
+                <Button Text="Resurtir Refacciones" FontSize="Title" Image="almacen.png" ContentLayout="Top,0" x:Name="BtnResurtir" Clicked="BtnResurtir_Clicked" Grid.Row="0" Grid.Column="0" BackgroundColor="#A8B9A9"/>
+                <Button Text="Sustraer Refacciones" FontSize="Title" Image="Sustrayendo.png" ContentLayout="Top,0" x:Name="BtnSustraer" Clicked="BtnSustraer_Clicked" Grid.Row="0" Grid.Column="1" BackgroundColor="#A8B9A9"/>
+                <Button Text="Agregar Refacción" FontSize="Title" Image="llaveinglesa.png" ContentLayout="Top,0" x:Name="BtnAgregar" Clicked="BtnAgregar_Clicked" Grid.Row="1" Grid.Column="0"  BackgroundColor="#A8B9A9"/>
+                <Button Text="Buscar" FontSize="Title" Image="lupa.png" ContentLayout="Top,0" x:Name="BtnBuscar" Clicked="BtnBuscar_Clicked" Grid.Row="1" Grid.Column="1"  BackgroundColor="#A8B9A9"/>
+                <Button Text="Inventario" FontSize="Title" Image="inventario.png" ContentLayout="Top,0" x:Name="BtnInventario" Clicked="BtnInventario_Clicked" Grid.Row="2" Grid.Column="0"  BackgroundColor="#A8B9A9"/>
+                <Button Text="Control de Existencias" FontSize="Title" x:Name="BtnTomar" Clicked="BtnTomar_Clicked" Grid.Column="1" Grid.Row="2" BackgroundColor="#CBCC95"/>
+
             </Grid>
         </StackLayout>
     </ContentPage.Content>

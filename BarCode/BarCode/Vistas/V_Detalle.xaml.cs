@@ -23,6 +23,7 @@ namespace BarCode.Vistas
         {
             InitializeComponent();
             conexion = DependencyService.Get<ISQLiteDB>().GetConnection();
+            NavigationPage.SetHasNavigationBar(this, false);
             ListaRefacciones.ItemSelected += ListaRefacciones_ItemSelected;
         }
 

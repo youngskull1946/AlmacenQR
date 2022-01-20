@@ -4,20 +4,22 @@ using System.Text;
 
 namespace BarCode
 {
-    public class Codigo
+    class OCode
     {
         public string Code { get; set; }
-        public string Quantity { get; set; }
+        public string Machine { get; set; }
+        public string Name { get; set; }
 
         public override string ToString()
         {
             return Code;
         }
 
-        public Codigo(string code, string quantity)
+        public OCode(string code, string name, string machin)
         {
             Code = code;
-            Quantity = quantity;
+            Name = name;
+            Machine = machin;
         }
     }
 }

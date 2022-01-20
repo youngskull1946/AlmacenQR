@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,5 +33,24 @@ namespace BarCode.Vistas
             await Navigation.PushAsync(new MainPage());
         }
 
+        async void BtnResurtir_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Ingresar());
+        }
+
+        async void BtnSustraer_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Sustraer());
+        }
+
+        async void BtnInventario_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new V_Detalle());
+        }
+
+
     }
+
+
+   
 }

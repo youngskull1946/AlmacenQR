@@ -9,12 +9,18 @@ using SQLite;
 using BarCode.Tablas;
 using System.IO;
 using BarCode.Datos;
+using BarCode.Services;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+
 
 namespace BarCode.Vistas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [DesignTimeVisible(false)]
     public partial class V_Consulta : ContentPage
     {
+        
         private SQLiteAsyncConnection conexion;
 
         public V_Consulta()
@@ -22,9 +28,11 @@ namespace BarCode.Vistas
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             conexion = DependencyService.Get<ISQLiteDB>().GetConnection();
-            BtnBuscar.Clicked += BtnBuscar_Clicked;
-            BtnRegistrar.Clicked += BtnRegistrar_Clicked;
+            
         }
+
+        IList<OCode> people = new ObservableCollection<OCode>();
+        
 
         private void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
@@ -39,9 +47,21 @@ namespace BarCode.Vistas
                 var db = new SQLiteConnection(rutaDB);
                 db.CreateTable<T_Refacciones>();
                 IEnumerable<T_Refacciones> resultado = SELECT_WHERE(db, TxtidR.Text);
-                if(resultado.Count() > 0) 
+
+                int id = 0, cant=0;
+                string maq = "", nom = "", barr="";
+                
+                if (resultado.Count() > 0)
                 {
-                    Navigation.PushAsync(new V_Detalle());
+                    foreach (var s in resultado)
+                    {
+                        id = s.Id;
+                        maq = s.Maquina;
+                        nom = s.Nombre;
+                        cant = s.Cantidad;
+                        barr = s.Barras;
+                    }
+                    Navigation.PushAsync(new DetalleFinal(id,maq,nom,cant,barr));
                     DisplayAlert("Alerta", "Existe Refacción", "OK");
                 }
                 else
@@ -58,7 +78,18 @@ namespace BarCode.Vistas
 
         private IEnumerable<T_Refacciones> SELECT_WHERE(SQLiteConnection db, string barras)
         {
-            return db.Query<T_Refacciones>("SELECT Id,Nombre FROM T_Refacciones WHERE Barras=?",barras);
+            return db.Query<T_Refacciones>("SELECT * FROM T_Refacciones WHERE Barras=?",barras);
+        }
+
+        private async void BtnEscaner_Clicked(object sender, EventArgs e)
+        {
+            var scanner = DependencyService.Get<ScanningService>();
+
+            var result = await scanner.ScanAsync();
+            if (result != null)
+            {
+                TxtidR.Text = result;
+            }
         }
     }
 }

@@ -6,14 +6,35 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.DetalleFinal">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10,20,10,10">
             <Label Text="Datos de la Refacción"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" FontSize="Title" />
             <Label x:Name="LblMensaje" HorizontalOptions="Center" />
-            <Entry x:Name="TxtBarras" Placeholder="Barras" />
-            <Entry x:Name="TxtMaquina" Placeholder="Maquina" />
-            <Entry x:Name="TxtNombre" Placeholder="Nombre" />
-            <Entry x:Name="TxtCantidad" Placeholder="Cantidad" />
+            <Grid IsVisible="True" InputTransparent="False" BackgroundColor="#F8F3F3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Text="ID / Código"  Grid.Column="0" Grid.Row="0"/>
+                <Label Text="Máquina"  Grid.Column="0" Grid.Row="1"/>
+                <Label Text="Nombre"  Grid.Column="0" Grid.Row="2"/>
+                <Label Text="Cantidad"  Grid.Column="0" Grid.Row="3"/>
+
+                <Entry x:Name="TxtBarras" Placeholder="Barras" Grid.Column="1" Grid.Row="0"/>
+                <Entry x:Name="TxtMaquina" Placeholder="Maquina" Grid.Column="1" Grid.Row="1"/>
+                <Entry x:Name="TxtNombre" Placeholder="Nombre" Grid.Column="1" Grid.Row="2"/>
+                <Entry x:Name="TxtCantidad" Placeholder="Cantidad" Grid.Column="1" Grid.Row="3"/>
+            </Grid>
+           
+            
+            
             <Button x:Name="BtnActualizar" Text="Actualizar" />       
             <Button x:Name="BtnBorrar" Text="Borrar" />
             <Button x:Name="BtnBorrarTodo" Text="Borrar Todo" />

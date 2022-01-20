@@ -6,11 +6,10 @@
              mc:Ignorable="d"
              x:Class="BarCode.Vistas.V_Detalle">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightBlue" Margin="5">
+        <StackLayout BackgroundColor="WhiteSmoke" Margin="10,20,10,10">
             <Label Text="Lista de Herramientas"
-                BackgroundColor="WhiteSmoke"
-                HorizontalOptions="Center" />
-            <ListView x:Name="ListaRefacciones">
+                HorizontalOptions="Center" FontSize="Title" />
+            <ListView x:Name="ListaRefacciones" BackgroundColor="#96CCB7">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Id}" Detail="{Binding Nombre}"/>
